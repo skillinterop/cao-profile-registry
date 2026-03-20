@@ -1,0 +1,23 @@
+{
+  "registryType": "cao-profile",
+  "namespace": "org",
+  "version": "0.1.0",
+  "channel": "experimental",
+  "generatedAt": "2026-03-20T07:00:00Z",
+  "items": [
+    {
+      "canonicalId": "cao-profile/org/default-cao@0.1.0",
+      "name": "default-cao",
+      "version": "0.1.0",
+      "description": "Default CAO profile for standard AI agent orchestration",
+      "path": "profiles/default-cao",
+      "channel": "experimental",
+      "status": "active",
+      "deprecatedBy": null,
+      "metadata": {
+        "targetAgents": ["claude", "generic"],
+        "orchestrationMode": "sequential"
+      }
+    }
+  ]
+}
