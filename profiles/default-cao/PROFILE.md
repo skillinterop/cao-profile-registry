@@ -1,29 +1,29 @@
 # default-cao
 
-Default CAO profile for standard AI agent orchestration.
+표준 AI 에이전트 오케스트레이션을 위한 기본 CAO 프로필.
 
-## Overview
+## 개요
 
-This profile provides baseline configuration for CAO (Coordination, Automation, Orchestration) workflows. It defines standard settings for AI agent coordination without specialized customization.
+이 프로필은 CAO(Coordination, Automation, Orchestration) 워크플로우에 대한 기본 구성을 제공합니다. 특별한 커스터마이징 없이 AI 에이전트 조율을 위한 표준 설정을 정의합니다.
 
-## Configuration
+## 구성
 
-| Setting | Value |
-|---------|-------|
-| Target Agents | claude, generic |
-| Orchestration Mode | sequential |
+| 설정 | 값 |
+|------|-----|
+| 대상 에이전트 | claude, generic |
+| 오케스트레이션 모드 | sequential |
 
-## Usage
+## 사용법
 
 ```yaml
 profile: cao-profile/org/default-cao
 ```
 
-## Compatibility
+## 호환성
 
-- Wrapper CLI: >=0.1.0
-- CAO Runtime: >=0.1.0
+- 래퍼 CLI: >=0.1.0
+- CAO 런타임: >=0.1.0
 
-## License
+## 라이선스
 
 MIT
