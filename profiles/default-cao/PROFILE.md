@@ -1,3 +1,14 @@
+---
+name: default-cao
+version: 0.1.0
+description: Default CAO profile for standard AI agent orchestration
+author: org
+canonicalId: cao-profile/org/default-cao@0.1.0
+tags: [cao, orchestration, default]
+targetAgents: [claude, generic]
+orchestrationMode: sequential
+---
+
 # default-cao
 
 표준 AI 에이전트 오케스트레이션을 위한 기본 CAO 프로필.
