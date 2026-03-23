@@ -1,0 +1,12 @@
+{
+  "canonicalId": "cao-profile/org/[MASKED_EMAIL]",
+  "name": "default-cao",
+  "version": "0.1.0",
+  "description": "Default CAO profile for standard AI agent orchestration",
+  "author": "org",
+  "tags": ["cao", "orchestration", "default"],
+  "targetAgents": ["claude", "generic"],
+  "orchestrationMode": "sequential",
+  "createdAt": "2026-03-20T07:00:00Z",
+  "updatedAt": "2026-03-20T07:00:00Z"
+}
