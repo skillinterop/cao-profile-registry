@@ -4,19 +4,19 @@
 
 ## 개요
 
-이 저장소는 CAO(Coordination, Automation, Orchestration) 프로필 메타데이터만을 저장하는 **리프 레지스트리**입니다. CAO 런타임이 아니며, 에이전트 오케스트레이션 동작을 구성하는 프로필 정의를 저장합니다. 래퍼 도구는 이 레지스트리의 `manifest.json`을 사용하여 프로필을 검색하고 설치합니다.
+이 저장소는 CAO(Coordination, Automation, Orchestration) 프로필 메타데이터만을 저장하는 **리프 레지스트리**입니다. CAO 런타임이 아니며, 에이전트 오케스트레이션 동작을 구성하는 프로필 정의를 저장합니다. 소비자 도구는 이 레지스트리의 `index.jsonld`를 읽어 프로필을 찾고 실제 `PROFILE.md`를 해석합니다.
 
 ## 디렉토리 구조
 
 ```
 cao-profile-registry/
-├── manifest.json              # 모든 프로필 항목이 포함된 레지스트리 매니페스트
+├── index.jsonld               # 모든 프로필 항목이 포함된 공개 카탈로그
 ├── schemas/
-│   └── manifest.schema.json   # 매니페스트 유효성 검사를 위한 JSON 스키마
+│   ├── index.schema.json      # index.jsonld 검증용 JSON Schema
+│   └── manifest.schema.json   # 레거시 manifest 계약 (Phase 3 전까지 유지)
 ├── profiles/
 │   └── <profile-name>/
-│       ├── PROFILE.md         # 프로필 문서
-│       └── metadata.json      # 프로필 메타데이터
+│       └── PROFILE.md         # 프로필 문서
 ├── README.md
 └── .gitignore
 ```
@@ -27,18 +27,23 @@ cao-profile-registry/
 |---------|------|------|------|
 | `cao-profile/org/default-cao@0.1.0` | default-cao | 0.1.0 | 표준 AI 에이전트 오케스트레이션을 위한 기본 CAO 프로필 |
 
-## 매니페스트 형식
+## 카탈로그 형식
 
-`manifest.json` 파일은 LeafManifest 구조를 따릅니다:
+`index.jsonld` 파일은 JSON-LD `DataCatalog` 구조를 따릅니다:
 
 ```json
 {
-  "registryType": "cao-profile",
-  "namespace": "org",
-  "version": "0.1.0",
-  "channel": "experimental",
-  "generatedAt": "2026-03-20T07:00:00Z",
-  "items": [...]
+  "@type": "DataCatalog",
+  "name": "CAO Profile Registry",
+  "dataset": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "cao-profile/org/default-cao@0.1.0",
+      "url": "./profiles/default-cao/PROFILE.md",
+      "skillinterop:status": "active",
+      "skillinterop:channel": "experimental"
+    }
+  ]
 }
 ```
 
@@ -46,8 +51,8 @@ cao-profile-registry/
 
 1. `profiles/<profile-name>/` 아래에 디렉토리를 생성합니다
 2. 프로필 문서가 담긴 `PROFILE.md`를 추가합니다
-3. 프로필 메타데이터가 담긴 `metadata.json`을 추가합니다
-4. `manifest.json`에 새 프로필 항목을 추가합니다
+3. `index.jsonld`의 `dataset` 배열에 새 항목을 추가합니다
+4. `schemas/index.schema.json` 기준으로 `index.jsonld`를 검증합니다
 5. 변경 사항으로 PR을 생성합니다
 
 ## 정규 ID 형식
